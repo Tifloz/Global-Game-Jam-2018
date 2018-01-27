@@ -7,8 +7,9 @@ public class PlayerBeginTrial : TriggerPlayerAction
     public GameObject RewardItem;
     public List<Vector2> TargetPosition;
 
-    protected override void OnActionTrigger(GameObject player)
+    private IEnumerator SpawnObjectives(GameObject player)
     {
+        Activate(true);
         foreach (var p in TargetPosition)
         {
             var item = Instantiate(RewardItem);
@@ -23,11 +24,17 @@ public class PlayerBeginTrial : TriggerPlayerAction
                 collider.isTrigger = true;
                 item.AddComponent<TrialPickup>();
             });
+            yield return new WaitForSeconds(0.4f);
         }
         var collector = player.AddComponent<TrialPickupCollector>();
         collector.PickupGoal = TargetPosition.Count;
         Destroy(this);
         gameObject.AddComponent<PlayerCompleteTrial>();
         Debug.Log("To complete: " + collector.PickupGoal);
+    }
+
+    protected override void OnActionTrigger(GameObject player)
+    {
+        StartCoroutine(SpawnObjectives(player));
     }
 }

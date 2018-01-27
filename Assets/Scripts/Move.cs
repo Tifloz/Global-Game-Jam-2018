@@ -7,7 +7,6 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     #region "Variables"
-    public GameObject player;
     public float speed;
     private Rigidbody2D rbody;
     #endregion

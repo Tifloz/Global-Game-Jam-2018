@@ -4,34 +4,18 @@ using UnityEngine;
 
 public class FireBehavior : MonoBehaviour {
 
-    public float ProjectileDistance { get; set; }
-    public float WeaponSize { get; set; }
-    public float ProjectileRadius { get; set; }
+    #region "Variables"
+    public GameObject projectile;
+    public float projectileDistance;
+    public float WeaponSize;
+    public float ProjectileRadius;
+    public float ShotRadius;
 
-    public int ProjectileCount { get; set; }
-
-	// Use this for initialization
-	void Start () {
-        ProjectileDistance = 5;
-        WeaponSize = 1;
-        ProjectileRadius = 20;
-        ProjectileCount = 4;
-	}
-    #region debug
-    void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
-    {
-        GameObject myLine = new GameObject();
-        myLine.transform.position = start;
-        myLine.AddComponent<LineRenderer>();
-        LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
-        lr.SetColors(color, color);
-        lr.SetWidth(0.02f, 0.02f);
-        lr.SetPosition(0, start);
-        lr.SetPosition(1, end);
-        GameObject.Destroy(myLine, duration);
-    }
-    #endregion debug
+    public int ProjectileCount;
+ 
+    #endregion "Variables"
+    // Use this for initialization
+    void Start () {}
 
     // Update is called once per frame
     void Update () {
@@ -50,8 +34,24 @@ public class FireBehavior : MonoBehaviour {
             target *= WeaponSize;
             #region debug
             Debug.Log("Draw from " + thisPos + " to " + target);
-            DrawLine(thisPos, target, Color.red);
+            Debug.DrawLine(thisPos, target, Color.red, 0.2f);
             #endregion debug
+
+            /// Creating Projectile
+            Debug.Log("Normal direction: " + dir);
+            for (int i = 0; i < ProjectileCount; ++i)
+            {
+                var pr = Instantiate(projectile, target, Quaternion.identity);
+                pr.GetComponent<Transform>().localScale *= ProjectileRadius;
+                /// Getting bounds of direction
+                /// 
+                var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-ShotRadius, ShotRadius, RandomFromDistribution.ConfidenceLevel_e._999);
+                Vector3 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
+                Debug.Log("Projectile direction: " + v2);
+                Debug.Log("random = " + randomAngle);
+                pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(0.3f, 0.7f)), ForceMode2D.Impulse);
+                Destroy(pr, 1);
+            }
 
         }
     }

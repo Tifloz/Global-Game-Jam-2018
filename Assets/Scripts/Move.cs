@@ -35,8 +35,33 @@ public class Move : MonoBehaviour {
     }
 
     #endregion
+
+    #region "XBox Inputs"
+
+    void InputXBox()
+    {
+        if (Input.GetAxis("Horizontal") > 0.3)
+        {
+            player.transform.Translate(Vector2.right * speed);
+        }
+        if (Input.GetAxis("Horizontal") < 0.3)
+        {
+            player.transform.Translate(Vector2.left * speed);
+        }
+        if (Input.GetAxis("Vertical") > 0.3)
+        {
+            player.transform.Translate(Vector2.up * speed);
+        }
+        if (Input.GetAxis("Vertical") < 0.3)
+        {
+            player.transform.Translate(Vector2.down * speed);
+        }
+    }
+
+    #endregion
     // Update is called once per frame
     void Update () {
         InputKeyboard();
+        InputXBox();
 	}
 }

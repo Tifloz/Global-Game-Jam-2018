@@ -6,11 +6,23 @@ public class Move : MonoBehaviour
 {
     #region "Variables"
     public GameObject player;
-    public KeyCode[] Keycode_array = new KeyCode[6];
+    public KeyCode[] Keycode_array = new KeyCode[3];
     public float speed;
     #endregion
 
+    private void Start()
+    {
+        Init_Keys();
+    }
+
     #region "Keyboard Inputs"
+    void Init_Keys()
+    {
+        Keycode_array[0] = KeyCode.UpArrow;
+        Keycode_array[1] = KeyCode.RightArrow;
+        Keycode_array[2] = KeyCode.DownArrow;
+        Keycode_array[3] = KeyCode.LeftArrow;
+    }
 
     void InputKeyboard()
     {

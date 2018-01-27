@@ -1,81 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    #region "Variables"
-    public GameObject player;
-    public KeyCode[] Keycode_array = new KeyCode[3];
-    public float speed;
-    #endregion
+    public KeyCode[] Keycode_array = new KeyCode[4] {KeyCode.UpArrow, KeyCode.RightArrow,
+        KeyCode.DownArrow, KeyCode.LeftArrow} ;
+    public float speed = 5;
+    private Rigidbody2D rbody;
 
     private void Start()
     {
-        Init_Keys();
+        rbody = GetComponent<Rigidbody2D>();
     }
 
-    #region "Keyboard Inputs"
-    void Init_Keys()
+    #region KeyboardInputs
+
+    Vector2 InputKeyboard()
     {
-        Keycode_array[0] = KeyCode.UpArrow;
-        Keycode_array[1] = KeyCode.RightArrow;
-        Keycode_array[2] = KeyCode.DownArrow;
-        Keycode_array[3] = KeyCode.LeftArrow;
-    }
+        int left = 0, right = 0, up = 0, down = 0;
 
-    void InputKeyboard()
-    {
-        if (Input.GetKey(Keycode_array[0]))
-        {
-            player.transform.Translate(Vector2.up * speed);
-        }
+        right = (Input.GetKey(Keycode_array[1])) ? 1 : 0;
+        left = (Input.GetKey(Keycode_array[3])) ? -1 : 0;
 
-        if (Input.GetKey(Keycode_array[1]))
-        {
-            player.transform.Translate(Vector2.right * speed);
-        }
+        up = (Input.GetKey(Keycode_array[0])) ? 1 : 0;
+        down = (Input.GetKey(Keycode_array[2])) ? -1 : 0;
 
-        if (Input.GetKey(Keycode_array[2]))
-        {
-            player.transform.Translate(Vector2.down * speed);
-        }
-
-        if (Input.GetKey(Keycode_array[3]))
-        {
-            player.transform.Translate(Vector2.left * speed);
-        }
+        return new Vector2(left + right, up + down);
     }
 
     #endregion
 
     #region "XBox Inputs"
 
-    void InputXBox()
+    Vector2 InputXBox()
     {
-        if (Input.GetAxis("Horizontal") > 0.3f)
-        {
-            player.transform.Translate(Vector2.right * speed);
-        }
-        if (Input.GetAxis("Horizontal") < -0.3f)
-        {
-            player.transform.Translate(Vector2.left * speed);
-        }
-        if (Input.GetAxis("Vertical") > 0.3f)
-        {
-            player.transform.Translate(Vector2.up * speed);
-        }
-        if (Input.GetAxis("Vertical") < -0.3f)
-        {
-            player.transform.Translate(Vector2.down * speed);
-        }
+        int left = 0, right = 0, up = 0, down = 0;
+
+        Debug.Log("Input xbox go !");
+
+        right = (Input.GetAxis("Horizontal") > 0.3f) ? 1 : 9;
+        left = (Input.GetAxis("Horizontal") < -0.3f) ? -1 : 0;
+
+        up = (Input.GetAxis("Vertical") > 0.3f) ? 1 : 0;
+        down = (Input.GetAxis("Vertical") < -0.3f) ? -1 : 0;
+
+        return new Vector2(left + right, up + down);
     }
 
     #endregion
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        InputKeyboard();
-        InputXBox();
+        Vector2 velocity = InputKeyboard();
+        if (!Keycode_array.Any(key => Input.GetKey(key)) && Input.GetJoystickNames().Length > 0)
+            velocity = InputXBox();
+        rbody.velocity = velocity * speed;
     }
 }

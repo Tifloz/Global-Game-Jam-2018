@@ -2,50 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hazard : MonoBehaviour {
-   // public GameObject playerScript;
+public class Hazard : MonoBehaviour
+{
+    public float seconds = 1;
+    private PlayerLight player;
+    private bool into = false;
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void OnTriggerStay2D(Collider2D other)
+    void Start()
     {
-        Debug.Log("I'm here");
-        if (this.gameObject.tag == "Pluie")
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(Take_Damage(1));
-        }
-        if (this.gameObject.tag == "Vent")
-        {
-            StartCoroutine(Take_Damage(2));
-        }
-        if (this.gameObject.tag == "Neige")
-        {
-            StartCoroutine(Take_Damage(3));
+            player = other.GetComponent<PlayerLight>();
+            into = true;
+            if (this.gameObject.tag == "Pluie")
+            {
+                StartCoroutine(Take_Damage(1));
+            }
+            if (this.gameObject.tag == "Vent")
+            {
+                StartCoroutine(Take_Damage(2));
+            }
+            if (this.gameObject.tag == "Neige")
+            {
+                StartCoroutine(Take_Damage(3));
+            }
         }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        into = false;
+    }
     IEnumerator Take_Damage(int type)
     {
-        yield return new WaitForSeconds(1);
-        if (type == 1)
+        while (into)
         {
-            Debug.Log("Pluie");
-        }
-        if (type == 2)
-        {
-            Debug.Log("vent");
-        }
-        if (type == 3)
-        {
-            Debug.Log("Neige");
+            if (type == 1)
+            {
+                player.torchlight -= 0.5f;
+            }
+            if (type == 2)
+            {
+                player.torchlight -= 1;
+            }
+            if (type == 3)
+            {
+                player.torchlight -= 0.25f;
+            }
+            yield return new WaitForSeconds(seconds);
         }
     }
+
 }

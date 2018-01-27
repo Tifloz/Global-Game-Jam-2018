@@ -11,7 +11,6 @@ public class spawnEntity : MonoBehaviour {
     public GameObject objectSpawn;
     public float minSpawnRadius;
     public float maxSpawnRadius;
-    public int maxEnemies;
     public float timeBetweenSpawn;
 
     private float _lastSpawn;
@@ -36,8 +35,9 @@ public class spawnEntity : MonoBehaviour {
             var distance = Random.Range(minSpawnRadius, maxSpawnRadius);
             var direction = Random.insideUnitCircle;
 
-            var position = GetPointOnPerimeter(distance, direction);
+            var position = GetPointOnPerimeter(distance, direction) + transform.position;
             Instantiate(objectSpawn, position, new Quaternion());
+            _lastSpawn = Time.time;
         }
     }
 }

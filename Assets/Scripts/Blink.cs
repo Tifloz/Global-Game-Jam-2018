@@ -48,7 +48,7 @@ public class Blink : MonoBehaviour
     {
         yield return new WaitForSeconds(RandomNumber(1, 2) / blink_speed);
         Number = 1;
-        i--;
+        i++;
     }
    
 }

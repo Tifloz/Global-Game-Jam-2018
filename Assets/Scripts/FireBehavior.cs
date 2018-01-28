@@ -59,6 +59,7 @@ public class FireBehavior : MonoBehaviour {
                     Destroy(pr, 1);
                 }
                 _interval = 0;
+                GetComponent<PlayerLight>().torchlight -= 0.9;
             }
         }
         else

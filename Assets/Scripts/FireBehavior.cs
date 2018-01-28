@@ -14,14 +14,16 @@ public class FireBehavior : MonoBehaviour {
     public float ProjectileVelocityAvg;
     public int ProjectileCount;
     public float ProjVelocityRange;
+    public GameObject skeleton;
 
     private Animator _anim;
     private float _interval;
     private Camera _camera;
     private Rigidbody2D _rbody;
     private PlayerLight _plight;
-
-
+    private Transform _transform;
+    private GameObject _anim_face;
+    private GameObject _anim_dos;
     // Use this for initialization
     void Start () {
         _anim = GetComponentInChildren<Animator>();
@@ -29,6 +31,9 @@ public class FireBehavior : MonoBehaviour {
         _camera = Camera.main;
         _rbody = GetComponent<Rigidbody2D>();
         _plight = GetComponent<PlayerLight>();
+        _transform = skeleton.GetComponent<Transform>();
+        _anim_face = skeleton.transform.Find("Tronc").gameObject;
+        _anim_dos = skeleton.transform.Find("Tronc Dos").gameObject;
     }
 
     // Update is called once per frame
@@ -85,14 +90,49 @@ public class FireBehavior : MonoBehaviour {
     void SetFirePosition(Vector2 dir)
     {
         if (dir.y >= 0.7)
+        {
             _anim.SetBool("AttackUp", true);
+            if (_anim.GetBool("Up") == false)
+            {
+                SwapRenderers();
+                _anim.SetBool("Up", true);
+            }
+        }
         else
         {
-//            if (dir.x < 0)
-//                _anim.SetBool("left", true);
-//            else if (dir.x > 0)
-//                _anim.SetBool("left", false);
+            if (_anim.GetBool("Up"))
+            {
+                SwapRenderers();
+                _anim.SetBool("Up", false);
+            }
+            if (dir.x > 0 && _anim.GetBool("left"))
+            {
+                _anim.SetBool("left", false);
+                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.z * 1);
+            }
+            else if (dir.x < 0 && _anim.GetBool("left") == false)
+            {
+                _anim.SetBool("left", true);
+                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.z * 1);
+            }
             _anim.SetBool("Attack", true);
+        }
+    }
+
+
+    void SwapRenderers()
+    {
+        if (_anim_dos.gameObject.activeSelf)
+        {
+            _anim_face.transform.position = _anim_dos.transform.position;
+            _anim_dos.SetActive(false);
+            _anim_face.SetActive(true);
+        }
+        else
+        {
+            _anim_dos.transform.position = _anim_face.transform.position;
+            _anim_dos.SetActive(true);
+            _anim_face.SetActive(false);
         }
     }
 

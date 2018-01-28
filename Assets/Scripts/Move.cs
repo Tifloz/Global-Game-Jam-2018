@@ -62,15 +62,15 @@ public class Move : MonoBehaviour
                 _anim.SetBool("Up", false);
                 SwapRenderers();
             }
-            if (_rbody.velocity.x < 0 && _anim.GetBool("left") == true)
+            if (_rbody.velocity.x < 0 && _anim.GetBool("left") == false && !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                _anim.SetBool("left", true);
+                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.z * 1);
+            }
+            else if (_rbody.velocity.x > 0 && _anim.GetBool("left") && !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 _anim.SetBool("left", false);
-                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.y * 1);
-            }
-            else if (_rbody.velocity.x > 0 && _anim.GetBool("left") == false)
-            {
-                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.y * 1);
-                _anim.SetBool("left", true);
+                _transform.localScale = new Vector3(-1 * _transform.localScale.x, _transform.localScale.y * 1, _transform.localScale.z * 1);
             }
         }
 

@@ -53,7 +53,7 @@ public class Upgrade : TriggerPlayerAction {
                 }
             case Type.e_Distance:
                 {
-                    player.GetComponent<FireBehavior>().projectileDistance += 4;
+                    player.GetComponent<FireBehavior>().ProjectileVelocityAvg += 1;
                     break;
                 }
         }

@@ -525,11 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1201786665224094, guid: 1be2e096a6e019743bc0d697393c6d0e, type: 2}
-  projectileDistance: 5
   WeaponSize: 2
-  ProjectileRadius: 0.4
-  RateOfFire: 0.4
-  ProjectileVelocityAvg: 0.5
+  ProjectileRadius: 1.5
+  RateOfFire: 1
+  ProjectileVelocityAvg: 4
   ProjectileCount: 4
 --- !u!1 &291645994
 GameObject:
@@ -1255,7 +1254,7 @@ Camera:
   far clip plane: 1000
   field of view: 99
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

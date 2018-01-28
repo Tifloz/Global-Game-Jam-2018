@@ -8,8 +8,10 @@ public class PlayerCompleteTrial : TriggerPlayerAction {
         var collector = player.GetComponent<TrialPickupCollector>();
         if (collector.Completed())
         {
+            gameObject.AddComponent<StopLightLoss>();
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.GetComponent<UpgradeChoice>().enabled = true;
+            player.GetComponent<PlayerLight>().inLightSource = true;
             Destroy(collector);
             Destroy(this);
         }

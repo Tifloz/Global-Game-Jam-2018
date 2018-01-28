@@ -52,13 +52,14 @@ public class FireBehavior : MonoBehaviour {
                     /// Getting bounds of direction
                     /// 
                     var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-ShotRadius, ShotRadius, RandomFromDistribution.ConfidenceLevel_e._999);
-                    Vector3 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
+                    Vector2 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
                     Debug.Log("Projectile direction: " + v2);
                     Debug.Log("random = " + randomAngle);
-                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(0.3f, 0.7f)), ForceMode2D.Impulse);
+                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * 5.0f * Random.Range(0.45f, 0.7f) + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
                     Destroy(pr, 1);
                 }
                 _interval = 0;
+                GetComponent<PlayerLight>().torchlight -= 0.9;
             }
         }
         else

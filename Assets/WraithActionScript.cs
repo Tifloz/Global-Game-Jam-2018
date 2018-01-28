@@ -12,13 +12,12 @@ public class WraithActionScript : MonoBehaviour
     public float health = 100;
     public float speed = 1;
     public float rotate_speed = 1;
-
+    public float damage;
 
     private bool _collidingPlayer;
     private GameObject _player;
     private Rigidbody2D _pbody;
     private Rigidbody2D _body;
-
 
 	void Start () {
 		_player = GameObject.FindWithTag("Player");
@@ -76,14 +75,49 @@ public class WraithActionScript : MonoBehaviour
     {
         if (other.tag == "PlayerLight")
         {
-            StartCoroutine(TakeLightDamage());
+            speed /= 1.5f;
+            StartCoroutine(GetBurnt(other));
+        }
+        else if (other.tag == "Player")
+        {
+            StartCoroutine(DamagePlayer());
         }
     }
 
-
-    IEnumerator TakeLightDamage()
+    void OnTriggerExit2D(Collider2D other)
     {
-        yield return new WaitForSeconds(.1f);
+        if (other.tag == "PlayerLight")
+        {
+            speed *= 1.5f;
+            StopCoroutine("GetBurnt");
+        }
+        else if (other.tag == "Player")
+        {
+            StopCoroutine("DamagePlayer");
+        }
     }
+
+    IEnumerator GetBurnt(Collider2D other)
+    {
+        var light = other.gameObject.GetComponent<lightCollider>();
+        while (true)
+        {
+            health -= light.damage;
+            yield return new WaitForSeconds(.2f);
+            if (health <= 0)
+                Destroy(gameObject);
+        }
+    }
+
+    IEnumerator DamagePlayer()
+    {
+        var player = _player.GetComponent<PlayerLight>();
+        while (true)
+        {
+            player.torchlight -= damage;
+            yield return new WaitForSeconds(.2f);
+        }
+    }
+
 
 }

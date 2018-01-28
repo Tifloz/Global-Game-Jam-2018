@@ -15,14 +15,14 @@ public class SwichRendererFace : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (_anim.GetBool("Up") && check == false)
+        if (_anim.GetBool("Up") && check == false && _anim.GetBool("Attack") == false)
         {
             check = true;
             Renderer[] rs = GetComponentsInChildren<Renderer>();
             foreach (Renderer r in rs)
                 r.enabled = false;
         }
-        if (_anim.GetBool("Up") == false)
+        if (_anim.GetBool("Up") == false || _anim.GetBool("Attack"))
         {
             check = false;
             Renderer[] rs = GetComponentsInChildren<Renderer>();

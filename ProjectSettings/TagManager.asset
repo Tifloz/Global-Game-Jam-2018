@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Pluie
-<<<<<<< HEAD
-  - SquadMan
-  - SquadChief
-  - LoneWolf
-  - PlayerLight
-  - Wraith
-=======
-  - Vent
-  - Neige
->>>>>>> 00033dfe462697ec12e97daa0f318474f24e4bae
+  tags: []
   layers:
   - Default
   - TransparentFX

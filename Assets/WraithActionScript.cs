@@ -71,4 +71,19 @@ public class WraithActionScript : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "PlayerLight")
+        {
+            StartCoroutine(TakeLightDamage());
+        }
+    }
+
+
+    IEnumerator TakeLightDamage()
+    {
+        yield return new WaitForSeconds(.1f);
+    }
+
 }

@@ -7,6 +7,9 @@ TagManager:
   - Neige
   - Vent
   - Pluie
+  - SquadMan
+  - SquadChief
+  - LoneWolf
   layers:
   - Default
   - TransparentFX

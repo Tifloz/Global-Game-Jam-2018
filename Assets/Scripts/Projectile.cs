@@ -10,10 +10,6 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Projectile>() == null)
-        {
-            Destroy(gameObject);
-        }
     }
     // Use this for initialization
 

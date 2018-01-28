@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 61559632332669818}
   m_Layer: 9
   m_Name: Wraith
-  m_TagString: Undefined
+  m_TagString: Wraith
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015865403846684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.66, y: -1.28, z: 0}
+  m_LocalPosition: {x: 6.91, y: -1.8, z: 0}
   m_LocalScale: {x: 0.14979427, y: 0.14979424, z: 0.14979424}
   m_Children:
   - {fileID: 4487049457540850}

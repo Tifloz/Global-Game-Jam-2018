@@ -12,6 +12,7 @@ TagManager:
   - LoneWolf
   - SquadMan
   - SquadChief
+  - Wraith
   layers:
   - Default
   - TransparentFX

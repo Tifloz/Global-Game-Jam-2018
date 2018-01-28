@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -14,6 +15,7 @@ public class WraithActionScript : MonoBehaviour
     public float rotate_speed = 1;
     public float damage;
 
+    private bool burning = false;
     private bool _collidingPlayer;
     private GameObject _player;
     private Rigidbody2D _pbody;
@@ -76,6 +78,7 @@ public class WraithActionScript : MonoBehaviour
         if (other.tag == "PlayerLight")
         {
             speed /= 1.5f;
+            burning = true;
             StartCoroutine(GetBurnt(other));
         }
         else if (other.tag == "Player")
@@ -88,8 +91,8 @@ public class WraithActionScript : MonoBehaviour
     {
         if (other.tag == "PlayerLight")
         {
+            burning = false;
             speed *= 1.5f;
-            StopCoroutine("GetBurnt");
         }
         else if (other.tag == "Player")
         {
@@ -100,7 +103,7 @@ public class WraithActionScript : MonoBehaviour
     IEnumerator GetBurnt(Collider2D other)
     {
         var light = other.gameObject.GetComponent<lightCollider>();
-        while (true)
+        while (burning)
         {
             health -= light.damage;
             yield return new WaitForSeconds(.2f);
@@ -119,5 +122,8 @@ public class WraithActionScript : MonoBehaviour
         }
     }
 
-
+    void OnGUI()
+    {
+        GUI.Label(new Rect(00, 200, 200, 200), "Wraith Heatlh == " + health);
+    }
 }

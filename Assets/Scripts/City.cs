@@ -18,7 +18,6 @@ public class City : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Lul");
         if (collision.tag == "Player" && light.intensity == 0)
             light.intensity = 3;
     }

@@ -41,17 +41,17 @@ public class HazardManager : MonoBehaviour
     void Select_type(int type)
     {
         exist = true;
-        if (type == 1)
+        if (type == 1 && Rain.Length > 1)
         {
             _curr_prefab = Rain[RandomNumber(0, Rain.Length - 1)];
             _curr_prefab.SetActive(true);
         }
-        if (type == 2)
+        if (type == 2 && Wind.Length > 1)
         {
             _curr_prefab = Wind[RandomNumber(0, Wind.Length - 1)];
             _curr_prefab.SetActive(true);
         }
-        if (type == 3)
+        if (type == 3 && Snow.Length > 1)
         {
             _curr_prefab = Snow[RandomNumber(0, Snow.Length - 1)];
             _curr_prefab.SetActive(true);

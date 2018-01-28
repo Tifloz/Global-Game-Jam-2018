@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b7e7d8740b7a1459f139a27777f3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minWait: 6
-  maxWait: 90
+  minWait: 2
+  maxWait: 60
   squadPossibility: 40
 --- !u!114 &114506203677169326
 MonoBehaviour:

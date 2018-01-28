@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seconds: 1
+  an: {fileID: 0}
 --- !u!212 &212374237554367860
 SpriteRenderer:
   m_ObjectHideFlags: 1

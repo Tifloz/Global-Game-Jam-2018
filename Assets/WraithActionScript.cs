@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using NUnit.Framework.Constraints;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class WraithActionScript : MonoBehaviour
 {

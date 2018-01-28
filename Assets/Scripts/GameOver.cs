@@ -29,7 +29,7 @@ public Text text;
 
     public void Restart()
     {
-        SceneManager.LoadScene("FloScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
     // Update is called once per frame
     void Update () {

@@ -10,7 +10,6 @@ GameObject:
   - component: {fileID: 4390732860897034}
   - component: {fileID: 50962783416443474}
   - component: {fileID: 212791860798567064}
-  - component: {fileID: 114330147344027710}
   - component: {fileID: 108820904140285912}
   m_Layer: 0
   m_Name: Lightball
@@ -88,18 +87,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114330147344027710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1007172837103178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d45e3e990b53146b3f51faafe7b627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blink_speed: 0.3
 --- !u!212 &212791860798567064
 SpriteRenderer:
   m_ObjectHideFlags: 1

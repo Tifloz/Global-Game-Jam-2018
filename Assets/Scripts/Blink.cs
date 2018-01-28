@@ -27,12 +27,12 @@ public class Blink : MonoBehaviour
     {
         if (Number == 0 && i < 8)
         {
-            Light.range = 0.8f;
+            Light.range -= 0.8f;
             StartCoroutine(Switch_on());
         }
         if (Number == 1 && i < 8)
         {
-            Light.range = 1;
+            Light.range -= 1;
             StartCoroutine(Switch_off());
         }
         if (i >= 8)

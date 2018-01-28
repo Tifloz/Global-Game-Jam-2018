@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class Move : MonoBehaviour
@@ -24,8 +23,8 @@ public class Move : MonoBehaviour
 
     Vector2 InputXBox()
     {
-        var hAxis = Input.GetAxis("Horizontal");
-        var vAxis = Input.GetAxis("Vertical");
+        var hAxis = Input.GetAxisRaw("Horizontal");
+        var vAxis = Input.GetAxisRaw("Vertical");
         var moveV = Vector2.right * hAxis;
         var moveH = Vector2.up * vAxis;
         return moveV + moveH;

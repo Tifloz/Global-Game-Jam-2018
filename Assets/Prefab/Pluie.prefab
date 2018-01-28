@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 212374237554367860}
   - component: {fileID: 50199123722294270}
   - component: {fileID: 58432955264833418}
+  - component: {fileID: 114313751058611706}
   m_Layer: 0
   m_Name: Pluie
   m_TagString: Pluie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4748098385861226
 Transform:
   m_ObjectHideFlags: 1
@@ -77,6 +78,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &114313751058611706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362414881854844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abe5bebcf946c49a831fd594602019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 1
 --- !u!212 &212374237554367860
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -11,9 +11,6 @@ using UnityEngine;
  */
 public class HazardManager : MonoBehaviour
 {
-    public GameObject Pluie;
-    public GameObject Neige;
-    public GameObject Vent;
     private GameObject[] Rain;
     private GameObject[] Snow;
     private GameObject[] Wind;
@@ -37,23 +34,27 @@ public class HazardManager : MonoBehaviour
     IEnumerator Zone_Duration(GameObject _curr_prefab)
     {
         yield return new WaitForSeconds(RandomNumber(30, 50));
-        Destroy(_curr_prefab);
+        _curr_prefab.SetActive(false);
         exist = false;
     }
 
     void Select_type(int type)
     {
-        if (type == 1)
+        exist = true;
+        if (type == 1 && Rain.Length > 1)
         {
-            _curr_prefab = Instantiate(Pluie,Rain[RandomNumber(0,Rain.Length -1)].transform.position, Quaternion.identity);
+            _curr_prefab = Rain[RandomNumber(0, Rain.Length - 1)];
+            _curr_prefab.SetActive(true);
         }
-        if (type == 2)
+        if (type == 2 && Wind.Length > 1)
         {
-            _curr_prefab = Instantiate(Vent, Wind[RandomNumber(0, Wind.Length -1)].transform.position, Quaternion.identity);
+            _curr_prefab = Wind[RandomNumber(0, Wind.Length - 1)];
+            _curr_prefab.SetActive(true);
         }
-        if (type == 3)
+        if (type == 3 && Snow.Length > 1)
         {
-            _curr_prefab = Instantiate(Neige, Snow[RandomNumber(0, Snow.Length -1)].transform.position, Quaternion.identity);
+            _curr_prefab = Snow[RandomNumber(0, Snow.Length - 1)];
+            _curr_prefab.SetActive(true);
         }
         StartCoroutine(Zone_Duration(_curr_prefab));
     }
@@ -62,8 +63,7 @@ public class HazardManager : MonoBehaviour
     {
         if (exist == false)
         {
-            exist = true;
-            Select_type(RandomNumber(1, 3));    
+            Select_type(RandomNumber(1, 3));
         }
     }
 }

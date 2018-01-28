@@ -6,12 +6,11 @@ public class FireBehavior : MonoBehaviour {
 
     #region "Variables"
     public GameObject projectile;
-    public float projectileDistance;
     public float WeaponSize;
     public float ProjectileRadius;
-    public float ShotRadius;
     private Animator _anim;
     public float RateOfFire;
+    public float ProjectileVelocityAvg;
     public int ProjectileCount;
     private float _interval;
 
@@ -24,8 +23,9 @@ public class FireBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        if (Input.GetButton("Fire1"))
+        if (_interval == RateOfFire)
+        {
+            if (Input.GetButton("Fire1"))
             {
                 var camera = Camera.main;
                 var pointed = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -35,14 +35,14 @@ public class FireBehavior : MonoBehaviour {
                 dir.z = 0;
                 dir.Normalize();
 
-                Debug.Log(dir);
+                Debug.Log("From : " + thisPos + " to : " + pointed);
+                Debug.Log("Normalize:" + dir);
                 if (dir.y >= 0.7)
                     _anim.SetBool("Attackup", true);
                 else
                     _anim.SetBool("Attack", true);
 
-                var target = thisPos + dir;
-                target *= WeaponSize;
+                var target = thisPos + dir * WeaponSize;
 
                 /// Creating Projectile
                 for (int i = 0; i < ProjectileCount; ++i)
@@ -51,22 +51,24 @@ public class FireBehavior : MonoBehaviour {
                     pr.GetComponent<Transform>().localScale *= ProjectileRadius;
                     /// Getting bounds of direction
                     /// 
-                    var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-ShotRadius, ShotRadius, RandomFromDistribution.ConfidenceLevel_e._999);
-                    Vector3 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
-                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(0.3f, 0.7f)), ForceMode2D.Impulse);
+                    var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-30, 30, RandomFromDistribution.ConfidenceLevel_e._999);
+                    Vector2 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
+                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(ProjectileVelocityAvg - 0.2f, ProjectileVelocityAvg + 0.2f)) + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
                     Destroy(pr, 1);
                 }
                 _interval = 0;
+                GetComponent<PlayerLight>().torchlight -= 0.9;
             }
-            else
-            {
-                _anim.SetBool("Attack", false);
-                _anim.SetBool("AttackUp", false);
+        }
+        else
+        {
+            _anim.SetBool("Attack", false);
+            _anim.SetBool("AttackUp", false);
 
-                _interval += Time.deltaTime;
-                if (_interval > RateOfFire)
-                    _interval = RateOfFire;
-            }
+            _interval += Time.deltaTime;
+            if (_interval > RateOfFire)
+                _interval = RateOfFire;
+        }
     }
 
 }

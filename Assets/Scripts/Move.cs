@@ -7,16 +7,26 @@ public class Move : MonoBehaviour
 {
     #region "Variables"
     public float speed;
+
+    public GameObject skeleton;
+
     private Rigidbody2D _rbody;
     private Animator _anim;
     private Transform _transform;
 
+    private GameObject _anim_face;
+    private GameObject _anim_dos;
+
     #endregion
+
     private void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
-        _anim = GetComponentInChildren<Animator>();
-        _transform = GetComponent<Transform>().Find("Skeleton").transform;
+        _transform = skeleton.GetComponent<Transform>();
+        _anim = skeleton.GetComponent<Animator>();
+
+        _anim_face = skeleton.transform.Find("Tronc").gameObject;
+        _anim_dos = skeleton.transform.Find("Tronc Dos").gameObject;
     }
 
     #region "XBox Inputs"
@@ -39,15 +49,19 @@ public class Move : MonoBehaviour
         _rbody.velocity = velocity * speed;
         if (_rbody.velocity.y > 0)
         {
-            _anim.SetBool("Up", true);
+            if (!_anim.GetBool("Up"))
+            {
+                _anim.SetBool("Up", true);
+                SwapRenderers();
+            }
         }
         else
         {
-            if (_anim.GetBool("Up"))
+            if (_anim.GetBool("Up") && _rbody.velocity.y < 0)
             {
                 _anim.SetBool("Up", false);
+                SwapRenderers();
             }
-            _anim.SetBool("Up", false);
             if (_rbody.velocity.x < 0 && _anim.GetBool("left") == true)
             {
                 _anim.SetBool("left", false);
@@ -60,5 +74,21 @@ public class Move : MonoBehaviour
             }
         }
 
+    }
+
+    void SwapRenderers()
+    {
+        if (_anim_dos.gameObject.activeSelf)
+        {
+            _anim_face.transform.position = _anim_dos.transform.position;
+            _anim_dos.SetActive(false);
+            _anim_face.SetActive(true);
+        }
+        else
+        {
+           _anim_dos.transform.position = _anim_face.transform.position;
+           _anim_dos.SetActive(true);
+           _anim_face.SetActive(false);
+        }
     }
 }

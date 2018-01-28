@@ -122,8 +122,4 @@ public class WraithActionScript : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(00, 200, 200, 200), "Wraith Heatlh == " + health);
-    }
 }

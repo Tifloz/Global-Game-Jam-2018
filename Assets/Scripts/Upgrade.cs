@@ -31,10 +31,16 @@ public class Upgrade : TriggerPlayerAction {
         UpgradeType = type;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+            OnActionTrigger(other.gameObject);
+
+    }
+
     protected override void OnActionTrigger(GameObject player)
     {
         Activate(true);
-        Debug.Log("Upgrade!");
         switch (UpgradeType)
         {
             case Type.e_Damage:

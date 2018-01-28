@@ -15,7 +15,6 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Wraith"))
         {
-            Debug.Log("Collided with " + other.gameObject.name + " !");
             var wraith = other.gameObject.GetComponent<WraithActionScript>();
             wraith.health -= damage;
             if (wraith.health <= 0)

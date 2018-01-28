@@ -81,6 +81,9 @@ public class WraithActionScript : MonoBehaviour
     }
 
 
-    void On
+    IEnumerator TakeLightDamage()
+    {
+        yield return new WaitForSeconds(.1f);
+    }
 
 }

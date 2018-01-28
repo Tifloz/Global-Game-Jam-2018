@@ -43,6 +43,6 @@ public class PlayerLight : MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.TextField("Player Heatlh == " + torchlight);
+        GUI.Label(new Rect(0, 0, 200, 200), "Player Heatlh == " + torchlight);
     }
 }

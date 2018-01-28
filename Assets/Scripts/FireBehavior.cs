@@ -89,8 +89,6 @@ public class FireBehavior : MonoBehaviour {
 
     void SetFirePosition(Vector2 dir)
     {
-        Debug.Log("Direction == " + dir);
-
         if (dir.y >= 0.7)
         {
             _anim.SetBool("AttackUp", true);

@@ -4,14 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Neige
-  - Vent
   - Pluie
+<<<<<<< HEAD
   - SquadMan
   - SquadChief
   - LoneWolf
   - PlayerLight
   - Wraith
+=======
+  - Vent
+  - Neige
+>>>>>>> 00033dfe462697ec12e97daa0f318474f24e4bae
   layers:
   - Default
   - TransparentFX
@@ -21,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Wraith
+  - 
+  - 
   - 
   - 
   - 
@@ -48,13 +51,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 719471707
-    locked: 0
-  - name: Player
-    uniqueID: 912541561
-    locked: 0
-  - name: Wraith
-    uniqueID: 3237637581
     locked: 0

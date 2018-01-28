@@ -9,8 +9,8 @@ public class FireBehavior : MonoBehaviour {
     public float projectileDistance;
     public float WeaponSize;
     public float ProjectileRadius;
-    public float ShotRadius;
     public float RateOfFire;
+    public float ProjectileVelocityAvg;
     public int ProjectileCount;
 
     private float _interval;
@@ -51,11 +51,11 @@ public class FireBehavior : MonoBehaviour {
                     pr.GetComponent<Transform>().localScale *= ProjectileRadius;
                     /// Getting bounds of direction
                     /// 
-                    var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-ShotRadius, ShotRadius, RandomFromDistribution.ConfidenceLevel_e._999);
+                    var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-30, 30, RandomFromDistribution.ConfidenceLevel_e._999);
                     Vector3 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
                     Debug.Log("Projectile direction: " + v2);
                     Debug.Log("random = " + randomAngle);
-                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(0.3f, 0.7f)), ForceMode2D.Impulse);
+                    pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(ProjectileVelocityAvg - 0.2f, ProjectileVelocityAvg + 0.2f)), ForceMode2D.Impulse);
                     Destroy(pr, 1);
                 }
                 _interval = 0;

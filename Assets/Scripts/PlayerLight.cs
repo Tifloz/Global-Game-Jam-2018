@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerLight : MonoBehaviour
 {
@@ -38,7 +38,7 @@ public class PlayerLight : MonoBehaviour
             else
                 yield return new WaitForSeconds(.2f);
         }
-        Destroy(this);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
     void OnGUI()

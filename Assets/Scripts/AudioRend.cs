@@ -25,7 +25,8 @@ public class AudioRend : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StartCoroutine(Counter());
+        if (collision.gameObject.tag == "Player")
+            StartCoroutine(Counter());
     }
     IEnumerator Counter()
     {

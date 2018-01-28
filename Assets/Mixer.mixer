@@ -15,7 +15,11 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters: []
-  m_AudioMixerGroupViews: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - a7428528ea4f7ce41906a04ecaa95ae6
+    - 7a9d7216d9d943d4e9f79be36b1bcad0
+    name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
@@ -26,7 +30,8 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: a7428528ea4f7ce41906a04ecaa95ae6
-  m_Children: []
+  m_Children:
+  - {fileID: 243553703753107762}
   m_Volume: 5e9a73f6a36cfbe4d913e7bf3bca42cb
   m_Pitch: 4e9668f824e6cad4783e3201adcbe359
   m_Effects:
@@ -58,3 +63,33 @@ AudioMixerSnapshotController:
   m_SnapshotID: 55406b3227b60394bae39d46a204fbc0
   m_FloatValues: {}
   m_TransitionOverrides: {}
+--- !u!243 &243553703753107762
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: bruit
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7a9d7216d9d943d4e9f79be36b1bcad0
+  m_Children: []
+  m_Volume: 2c17222b47816444e9969b6f0f77324c
+  m_Pitch: 8aebe9ef65c3839459cc215f2fb22496
+  m_Effects:
+  - {fileID: 244042500445503010}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244042500445503010
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4f4c4ba5d86ee84489a6bfb306c7d300
+  m_EffectName: Attenuation
+  m_MixLevel: 83dcea47c7376c145bf1188dfb422e47
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

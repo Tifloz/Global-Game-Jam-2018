@@ -26,6 +26,11 @@ public Text text;
     {
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("FloScene", LoadSceneMode.Single);
+    }
     // Update is called once per frame
     void Update () {
 		

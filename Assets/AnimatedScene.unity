@@ -108,6 +108,29 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &513110775 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1132591672168134, guid: d2417ee6a21187e449c3e996547bd125,
+    type: 2}
+  m_PrefabInternal: {fileID: 993724134}
+--- !u!114 &513110779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513110775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53abb45b97af224c95f06798b4f8833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1201786665224094, guid: 1be2e096a6e019743bc0d697393c6d0e, type: 2}
+  projectileDistance: 5
+  WeaponSize: 1
+  ProjectileRadius: 1
+  ShotRadius: 3
+  RateOfFire: 1
+  ProjectileCount: 3
 --- !u!1 &980300667
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +177,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 719471707
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 40f99871924ef624797fad8ca4bf1423, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -229,7 +252,8 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114617379196037606, guid: d2417ee6a21187e449c3e996547bd125, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d2417ee6a21187e449c3e996547bd125, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1418699894 stripped

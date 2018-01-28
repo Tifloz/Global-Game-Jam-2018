@@ -18,7 +18,6 @@ public class spawnEntity : MonoBehaviour {
 	void Start ()
 	{
 	    _lastSpawn = Time.time;
-
 	}
 
     Vector3 GetPointOnPerimeter(float radius, Vector2 vectorPoint)

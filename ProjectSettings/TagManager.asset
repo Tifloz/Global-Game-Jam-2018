@@ -50,3 +50,9 @@ TagManager:
   - name: Player
     uniqueID: 912541561
     locked: 0
+  - name: PlayerTorso
+    uniqueID: 1224864339
+    locked: 0
+  - name: FlameTorche
+    uniqueID: 3443908225
+    locked: 0

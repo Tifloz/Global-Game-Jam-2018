@@ -10,12 +10,14 @@ public class FireBehavior : MonoBehaviour {
     public float WeaponSize;
     public float ProjectileRadius;
     public float ShotRadius;
-
+    private Animator _anim;
     public int ProjectileCount;
  
     #endregion "Variables"
     // Use this for initialization
-    void Start () {}
+    void Start () {
+        _anim = GetComponentInChildren<Animator>();
+    }
 
     // Update is called once per frame
     void Update () {
@@ -30,6 +32,15 @@ public class FireBehavior : MonoBehaviour {
             dir.z = 0;
             dir.Normalize();
 
+            if (Input.GetButton("Fire1"))
+            {
+                Debug.Log(dir);
+                if (dir.y >= 0.7)
+                    _anim.SetBool("Attackup", true);
+                else
+                    _anim.SetBool("Attack", true);
+            }
+
             var target = thisPos + dir;
             target *= WeaponSize;
             #region debug
@@ -38,7 +49,6 @@ public class FireBehavior : MonoBehaviour {
             #endregion debug
 
             /// Creating Projectile
-            Debug.Log("Normal direction: " + dir);
             for (int i = 0; i < ProjectileCount; ++i)
             {
                 var pr = Instantiate(projectile, target, Quaternion.identity);
@@ -47,12 +57,14 @@ public class FireBehavior : MonoBehaviour {
                 /// 
                 var randomAngle = RandomFromDistribution.RandomRangeNormalDistribution(-ShotRadius, ShotRadius, RandomFromDistribution.ConfidenceLevel_e._999);
                 Vector3 v2 = Quaternion.AngleAxis(randomAngle, Vector3.forward) * dir;
-                Debug.Log("Projectile direction: " + v2);
-                Debug.Log("random = " + randomAngle);
                 pr.GetComponent<Rigidbody2D>().AddForce(v2 * (5.0f * Random.Range(0.3f, 0.7f)), ForceMode2D.Impulse);
                 Destroy(pr, 1);
             }
-
+        }
+        else
+        {
+            _anim.SetBool("Attack", false);
+            _anim.SetBool("AttackUp", false);
         }
     }
 }

@@ -38,7 +38,8 @@ public class PlayerLight : MonoBehaviour
             else
                 yield return new WaitForSeconds(.2f);
         }
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        if (torchlight <= 0)
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
     void OnGUI()

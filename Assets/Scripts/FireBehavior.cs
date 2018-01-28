@@ -9,24 +9,23 @@ public class FireBehavior : MonoBehaviour {
     public float projectileDistance;
     public float WeaponSize;
     public float ProjectileRadius;
+    private Animator _anim;
     public float RateOfFire;
     public float ProjectileVelocityAvg;
     public int ProjectileCount;
-
     private float _interval;
 
     #endregion "Variables"
     // Use this for initialization
     void Start () {
+        _anim = GetComponentInChildren<Animator>();
         _interval = 0f;
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (_interval == RateOfFire)
-        {
-            if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1"))
             {
                 var camera = Camera.main;
                 var pointed = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -36,15 +35,16 @@ public class FireBehavior : MonoBehaviour {
                 dir.z = 0;
                 dir.Normalize();
 
+                Debug.Log(dir);
+                if (dir.y >= 0.7)
+                    _anim.SetBool("Attackup", true);
+                else
+                    _anim.SetBool("Attack", true);
+
                 var target = thisPos + dir;
                 target *= WeaponSize;
-                #region debug
-                Debug.Log("Draw from " + thisPos + " to " + target);
-                Debug.DrawLine(thisPos, target, Color.red, 0.2f);
-                #endregion debug
 
                 /// Creating Projectile
-                Debug.Log("Normal direction: " + dir);
                 for (int i = 0; i < ProjectileCount; ++i)
                 {
                     var pr = Instantiate(projectile, target, Quaternion.identity);
@@ -61,13 +61,16 @@ public class FireBehavior : MonoBehaviour {
                 _interval = 0;
                 GetComponent<PlayerLight>().torchlight -= 0.9;
             }
-        }
-        else
-        {
-            _interval += Time.deltaTime;
-            if (_interval > RateOfFire)
-                _interval = RateOfFire;
-        }
+            else
+            {
+                _anim.SetBool("Attack", false);
+                _anim.SetBool("AttackUp", false);
 
+                _interval += Time.deltaTime;
+                if (_interval > RateOfFire)
+                    _interval = RateOfFire;
+            }
     }
+
 }
+

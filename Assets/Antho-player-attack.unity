@@ -275,8 +275,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 719471707
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 40f99871924ef624797fad8ca4bf1423, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -295,8 +295,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 547708275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.591, y: 0.099, z: 0}
-  m_LocalScale: {x: 21.29924, y: 21.299227, z: 1}
+  m_LocalPosition: {x: 0.49, y: 0.1, z: 0.32}
+  m_LocalScale: {x: 5.29924, y: 5.29923, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -699,8 +699,8 @@ MonoBehaviour:
   projectileDistance: 10
   WeaponSize: 1
   ProjectileRadius: 0.2
-  ShotRadius: 30
   RateOfFire: 0.4
+  ProjectileVelocityAvg: 0.5
   ProjectileCount: 4
 --- !u!114 &1216931612
 MonoBehaviour:

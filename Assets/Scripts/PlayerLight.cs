@@ -38,7 +38,7 @@ public class PlayerLight : MonoBehaviour
             else
                 yield return new WaitForSeconds(.2f);
         }
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
     void OnGUI()

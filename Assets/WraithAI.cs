@@ -72,7 +72,6 @@ public class WraithAI : MonoBehaviour
 
     IEnumerator LoneWraithLoop()
     {
-        Debug.Log("[LONEWOLF] Waiting for " + attackWaitTimer + " seconds...");
         yield return new WaitForSeconds(attackWaitTimer);
         _action.LoneWolfAttack();
     }
@@ -84,7 +83,6 @@ public class WraithAI : MonoBehaviour
 
     IEnumerator SquadMenLoop()
     {
-        Debug.Log("[SQMAN] Waiting for attack order !");
         yield return new WaitUntil(readyToAttack);
         tag = "LoneWolf";
         _action.LoneWolfAttack();
@@ -92,9 +90,7 @@ public class WraithAI : MonoBehaviour
 
     IEnumerator SquadChiefLoop()
     {
-        Debug.Log("[CHIEF] Waiting for " + attackWaitTimer + " seconds!");
         yield return new WaitForSeconds(attackWaitTimer);
-        Debug.Log("[CHIEF] Launching attack !");
         _squad = GameObject.FindGameObjectsWithTag("SquadMan");
         foreach (var unit in _squad)
         {

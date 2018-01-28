@@ -41,9 +41,4 @@ public class PlayerLight : MonoBehaviour
         if (torchlight <= 0)
             SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
-
-    void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 200, 200), "Player Heatlh == " + torchlight);
-    }
 }

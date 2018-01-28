@@ -17,12 +17,18 @@ public class StopLightLoss : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
+        {
+            other.transform.Find("Spawner").gameObject.SetActive(false);
             other.GetComponent<PlayerLight>().inLightSource = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
+        {
+            other.transform.Find("Spawner").gameObject.SetActive(true);
             other.GetComponent<PlayerLight>().inLightSource = false;
+        }
     }
 }

@@ -7,6 +7,7 @@ public class TrialPickupCollector : MonoBehaviour {
     // Use this for initialization
     public int PickupGoal;
     public int Current;
+    public GameObject Spawner;
 
     public void Start()
     {
@@ -27,5 +28,14 @@ public class TrialPickupCollector : MonoBehaviour {
     public bool Completed()
     {
         return Current == PickupGoal;
+    }
+
+    void Update()
+    {
+        if (Completed())
+        {
+            Spawner.GetComponent<UpgradeChoice>().LaunchUpgrades();
+            Destroy(this);
+        }
     }
 }
